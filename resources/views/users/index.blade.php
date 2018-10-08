@@ -20,7 +20,7 @@
                 <div class="box-header">
                     <h3 class="box-title">Semua Pengguna</h3>
                     <div class="box-tools">
-                        <a class="btn btn-sm btn-flat btn-primary" href="">Tambah</a>
+                        <a class="btn btn-sm btn-flat btn-primary" href="{{ route('pengguna.create') }}">Tambah</a>
                         <a class="btn btn-sm btn-flat btn-danger" href="">Lihat Data</a>
                     </div>
                 </div>
@@ -49,15 +49,6 @@
                             </tr>
                         @endforeach
                         </tbody>
-                        <tfoot>
-                        {{--<tr>--}}
-                        {{--<th>Rendering engine</th>--}}
-                        {{--<th>Browser</th>--}}
-                        {{--<th>Platform(s)</th>--}}
-                        {{--<th>Engine version</th>--}}
-                        {{--<th>CSS grade</th>--}}
-                        {{--</tr>--}}
-                        </tfoot>
                     </table>
                 </div>
                 <!-- /.box-body -->
@@ -68,9 +59,10 @@
 @push('js')
     <script>
         $(function () {
-            $('#example').DataTable({
+
+            $('#example1').DataTable({
                 'paging'      : true,
-                'lengthChange': false,
+                'lengthChange': true,
                 'searching'   : false,
                 'ordering'    : true,
                 'info'        : true,

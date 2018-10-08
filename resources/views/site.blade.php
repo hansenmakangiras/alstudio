@@ -183,6 +183,7 @@
                             <div class="showcase-slider">
                                 <ul class="slides" id="showcaseSlider">
                                     <li>
+                                        <<<<<<< HEAD
                                         <img src="{{ asset('assets/frontpage/img/screen1.jpg') }}" alt="Device Content Image">
                                     </li>
                                     <li>
@@ -190,6 +191,18 @@
                                     </li>
                                     <li>
                                         <img src="{{ asset('assets/frontpage/img/screen3.jpg') }}" alt="Device Content Image">
+                                        =======
+                                        <img src="{{ asset('assets/frontpage/img/screen1.jpg') }}"
+                                             alt="Device Content Image">
+                                    </li>
+                                    <li>
+                                        <img src="{{ asset('assets/frontpage/img/screen2.jpg') }}"
+                                             alt="Device Content Image">
+                                    </li>
+                                    <li>
+                                        <img src="{{ asset('assets/frontpage/img/screen3.jpg') }}"
+                                             alt="Device Content Image">
+                                        >>>>>>> [ADD] User create view
                                     </li>
                                 </ul>
                             </div>
@@ -202,13 +215,25 @@
                         consequat ut sed sem. Duis quis tempor nunc. Interdum et malesuada fames ac ante ipsum primis in
                         faucibus.</p>
                     <blockquote class="team-quote">
+                        <<<<<<< HEAD
                         <div class="avatar"><img src="{{ asset('assets/frontpage/img/avatar.png') }}" alt="User Avatar"></div>
                         <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a lorem quis neque interdum
                             consequat ut sed sem. Duis quis tempor nunc." - Steve Jobs</p>
                         <div class="logo-quote">
                             <a href="http://tympanus.net/codrops/"><img src="{{ asset('assets/frontpage/img/codrops-logo.png') }}"
                                                                         alt="Codrops Logo"></a>
-                        </div>
+                            =======
+                            <div class="avatar"><img src="{{ asset('assets/frontpage/img/avatar.png') }}"
+                                                     alt="User Avatar">
+                            </div>
+                            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a lorem quis neque interdum
+                                consequat ut sed sem. Duis quis tempor nunc." - Steve Jobs</p>
+                            <div class="logo-quote">
+                                <a href="http://tympanus.net/codrops/"><img
+                                        src="{{ asset('assets/frontpage/img/codrops-logo.png') }}"
+                                        alt="Codrops Logo"></a>
+                                >>>>>>> [ADD] User create view
+                            </div>
                     </blockquote>
                     <a href="http://tympanus.net/codrops/?p=22554" class="download-btn">Download! <i
                             class="fa fa-download"></i></a>
