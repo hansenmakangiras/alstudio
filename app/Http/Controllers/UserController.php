@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\LevelPengguna;
 use Illuminate\Http\Request;
-use App\User;
+use App\Models\User;
+use Hash;
 
 class UserController extends Controller
 {
@@ -14,8 +16,14 @@ class UserController extends Controller
      */
     public function index()
     {
-        $data = User::all();
-        return view('users.index', compact('data'));
+        $data = User::with('level')->get();
+        $level = [];
+        foreach ($data as $item) {
+            $level[] = $item->level();
+        }
+
+//        dd($level);
+        return view('users.index', compact('data', 'level'));
     }
 
     /**
@@ -25,8 +33,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
-
+        $level = LevelPengguna::pluck('level', 'id');
+        return view('users.create', compact('level'));
     }
 
     /**
@@ -37,7 +45,29 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->post()) {
+//            $request->validate([
+//                'name' => 'unique:users',
+//                'email' => 'email',
+//            ]);
+
+            $input = $request->all();
+//            dd($input);
+            $user = new User();
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->password = Hash::make($request->password);
+            $user->is_admin = $request->is_admin;
+
+            if ($user->save($input)) {
+                return redirect()->route('pengguna.create')->with('Success', 'Data pengguna berhasil disimpan');
+            }
+
+            return redirect()->route('pengguna.create')->with('Error', 'Data pengguna gagal disimpan');
+
+        }
+
+        return back()->with('Warning', 'Permintaan tidak sah');
     }
 
     /**

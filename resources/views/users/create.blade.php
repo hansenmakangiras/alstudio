@@ -17,6 +17,19 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
+            @if (session('Success'))
+                <div class="alert alert-success alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h4><i class="icon fa fa-check"></i> Pesan Berhasil!</h4>
+                    {{ session('Success') }}
+                </div>
+            @elseif (session('Error'))
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h4><i class="icon fa fa-ban"></i> Terjadi Kesalahan!</h4>
+                    {{ session('Error') }}
+                </div>
+            @endif
             <div class="box box-primary">
                 <div class="box-header with-border">
                     <h3 class="box-title">Tambah Pengguna</h3>
@@ -27,38 +40,59 @@
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form class="form-horizontal">
+                <form class="form-horizontal" method="POST" action="{{ route('pengguna.store') }}">
+                    @csrf
                     <div class="box-body">
                         <div class="form-group">
-                            <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+                            <label for="name" class="col-sm-2 control-label">Nama Lengkap</label>
 
-                            <div class="col-sm-10">
-                                <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                            <div class="col-sm-8">
+                                {!! Form::text('name', null, ['class' => 'form-control','id'=>'name','placeholder'
+                                => 'Masukkan nama lengkap anda']) !!}
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+                            <label for="email" class="col-sm-2 control-label">Email</label>
 
-                            <div class="col-sm-10">
-                                <input type="password" class="form-control" id="inputPassword3"
-                                       placeholder="Password">
+                            <div class="col-sm-8">
+                                {!! Form::email('email', null, ['class' => 'form-control','id'=>'email',
+                                'placeholder'=>'Masukkan email anda'])
+                                 !!}
                             </div>
                         </div>
-                        <div class="form-group has-error">
-                            <label class="col-sm-2 control-label" for="inputError"><i class="fa
-                            fa-times-circle-o"></i>
-                                Input with
-                                error</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputError" placeholder="Enter ...">
-                                <span class="help-block">Help block with error</span>
+                        <div class="form-group">
+                            <label for="password" class="col-sm-2 control-label">Kata Sandi</label>
+
+                            <div class="col-sm-8">
+                                {!! Form::password('password',['class' => 'form-control','id'=>'password',
+                                'placeholder'=>'Masukkan kata kunci anda'])
+                                 !!}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmpassword" class="col-sm-2 control-label">Ulang Kata Sandi</label>
+
+                            <div class="col-sm-8">
+                                {!! Form::password('confirmpassword', ['class' => 'form-control',
+                                'id'=>'confirmpassword',
+                                'placeholder'=>'Ulangi kata kunci anda'])
+                                 !!}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmpassword" class="col-sm-2 control-label">Level Akses</label>
+
+                            <div class="col-sm-8">
+                                {!! Form::select('level', $level , null , ['class' => 'form-control','id'=>'level']) !!}
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox"> Remember me
+                                        {!! Form::checkbox('is_admin', '1', null,  ['id' => 'level','type'=>'checkbox'])
+                                         !!}
+                                        Is Admin
                                     </label>
                                 </div>
                             </div>
@@ -66,8 +100,8 @@
                     </div>
                     <!-- /.box-body -->
                     <div class="box-footer">
-                        <button type="submit" class="btn btn-default">Cancel</button>
-                        <button type="submit" class="btn btn-info pull-right">Sign in</button>
+                        <a href="{{ route('pengguna.index') }}" type="submit" class="btn btn-default">Kembali</a>
+                        <button type="submit" class="btn btn-info pull-right">Simpan</button>
                     </div>
                     <!-- /.box-footer -->
                 </form>

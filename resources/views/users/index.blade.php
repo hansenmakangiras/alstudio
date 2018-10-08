@@ -17,12 +17,13 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="box">
-                <div class="box-header">
-                    <h3 class="box-title">Semua Pengguna</h3>
-                    <div class="box-tools">
-                        <a class="btn btn-sm btn-flat btn-primary" href="{{ route('pengguna.create') }}">Tambah</a>
-                        <a class="btn btn-sm btn-flat btn-danger" href="">Lihat Data</a>
-                    </div>
+                <div class="box-header with-border">
+                    {{--<h3 class="box-title">Semua Pengguna</h3>--}}
+                    <a class="btn btn-sm btn-flat btn-openid" href="{{ route('pengguna.create') }}"><i
+                            class="fa fa-user-circle-o"></i> Tambah Pengguna</a>
+                    {{--<div class="box-tools">--}}
+                    {{--<a class="btn btn-sm btn-flat btn-primary" href="{{ route('pengguna.create') }}">Tambah</a>--}}
+                    {{--</div>--}}
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -32,6 +33,7 @@
                             <th>#</th>
                             <th>Nama</th>
                             <th>Email</th>
+                            <th>Level Akses</th>
                             <th>Tanggal</th>
                             <th>Aksi</th>
                         </tr>
@@ -42,9 +44,13 @@
                                 <td>{{ $val->id }}</td>
                                 <td>{{ $val->name }}</td>
                                 <td>{{ $val->email }}</td>
+                                <td>{{ $val->level->level }}</td>
                                 <td>{{ $val->created_at }}</td>
                                 <td>
-                                    <a href="" class="btn btn-xs btn-info"><i class="fa fa-edit"></i> </a>
+                                    <a href="{{ route('pengguna.update', $val->id) }}" class="btn btn-xs btn-primary
+                                    btn-flat"><i class="fa fa-edit"></i> Ubah</a>
+                                    <a href="{{ route('pengguna.destroy', $val->id) }}" class="btn btn-xs btn-danger
+                                    btn-flat"><i class="fa fa-trash"></i> Hapus</a>
                                 </td>
                             </tr>
                         @endforeach
